@@ -1,4 +1,5 @@
 package controller;
+import service.PersonalityCalculator;
 
 import java.io.IOException;
 
@@ -26,15 +27,21 @@ public class PersonalityViewController extends HttpServlet {
 		rd.forward(request, response);
 	}
 
+	// create an object for the PersonalityCalculator
+	// call the findYourBrainType method using the object created above and pass options as argument.
+	// The value returned from the method is of type string.
+	// Store the String returned in a string literal called as message
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		
 		String options=request.getParameter("selectedOptions");
 		
 		System.out.println(options);
+		
+		PersonalityCalculator p = new PersonalityCalculator();
+		String message = p.findYourBrainType(options);
+		
 				
-		/* 
 
 		request.setAttribute("message", message);
 		
@@ -53,8 +60,9 @@ public class PersonalityViewController extends HttpServlet {
 				rd.forward(request, response);
 			}
 		
-		}*/
 		}
-	}
+		}
+}
+	
 
 
